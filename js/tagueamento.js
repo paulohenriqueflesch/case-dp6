@@ -31,8 +31,19 @@ $(document).ready(function() {
         ga('send', 'event', 'contato', $(this).attr("id"), "preencheu");
     });
 
-    $('form').bind('ajax:complete', function() {
-        console.log('teste');
+    let body = $('body');
+    let observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        let attributeValue = $(mutation.target).prop(mutation.attributeName);
+        if(attributeValue.includes('lightbox-open')){
+            ga('send', 'event', 'contato', 'enviado', 'enviado');
+        }
+    });
+    });
+
+    observer.observe(body[0], {
+        attributes: true,
+        attributeFilter: ['class']
     });
 
 });
