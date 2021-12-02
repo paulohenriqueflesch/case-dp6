@@ -35,7 +35,8 @@ $(document).ready(function() {
     let observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
         let attributeValue = $(mutation.target).prop(mutation.attributeName);
-        if(attributeValue.includes('lightbox-open')){
+        console.log(attributeValue);
+        if(attributeValue.includes('lightbox-open') && attributeValue.includes('sobre')){
             ga('send', 'event', 'contato', 'enviado', 'enviado');
         }
     });
